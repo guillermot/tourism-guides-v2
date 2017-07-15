@@ -1,0 +1,32 @@
+{
+    "guides": {
+        "first-visit": {
+            "name": "First visit guide!",
+            "code": "first-visit",
+            "description": "All places you need to go in your first visit to New York.",
+            "img": "/src/assets/img/manhattan/rockefeller-center.jpg",
+            "places": ["rockerfeller-center", "chinatown", "grand-central-terminal", "brooklyn-bridge", "statue-liberty", "high-line" ]
+        },
+        "central-park": {
+            "name": "Best of Central Park",
+            "code": "central-park",
+            "description": "This park is full of litles treasures to discover, each one of them will blow your mind.",
+            "img": "/src/assets/img/manhattan/high-line.jpg",
+            "places": [ "belvedere-castle", "strawberryfields-memorial", "bethesda-terrace-and-fountain", "gapstow-bridge", "central-park-zoo" ]
+        },
+        "downtown": {
+            "name": "Places on Downtown",
+            "description": "One of the most important financial",
+            "code": "downtown",
+            "img": "/src/assets/img/manhattan/high-line.jpg",
+            "places": [ "world-trade-center", "charging-bull", "brooklyn-bridge" ]
+        },
+        "neighborhoods": {
+            "name": "Manhattan Neighborhoods",
+            "code": "neighborhoods",
+            "description": "Most important neighborhoods of Manhattan. All the right places you should visit",
+            "img": "/src/assets/img/manhattan/high-line.jpg",
+            "places": [ "upper-west-side", "greenwich-village", "upper-east-side", "midtown", "downtown"]
+        }
+    }
+}
