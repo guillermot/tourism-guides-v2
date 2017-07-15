@@ -1,0 +1,91 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="g-map">
+    <template>
+        <style>
+             :host {
+                height: 100%;
+                width: 100%;
+            }
+
+            .map {
+                height: 100%;
+                z-index: 0;
+            }
+        </style>
+        <div class="map" id="map"></div>
+    </template>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbRO19iUb2TFvyzV6bK_Smtsn0EBpPvQQ"></script>
+
+    <script>
+        class GMap extends Polymer.Element {
+
+            addMarkers(marker) {
+
+                const coordinates = {
+                    lat: marker.lat,
+                    lng: marker.lng
+                };
+
+                var marker = new google.maps.Marker({
+                    position: coordinates,
+                    map: this.map,
+                    title: marker.title
+                });
+
+                this.markers.push(marker);
+            }
+
+            markerPanTo(marker) {
+                if (marker.lat) {
+                    this.map.panTo({
+                        lat: marker.lat,
+                        lng: marker.lng
+                    });
+                }
+            }
+
+            cleanMap() {
+                this.markers.forEach(function (marker) {
+                    marker.setMap(null);
+                }, this);
+            }
+
+            ready() {
+                super.ready();
+
+                const lat = 40.7479806;
+                const lng = -73.9774424;
+                const map = new google.maps.Map(this.$.map, {
+                    center: {
+                        lat: lat,
+                        lng: lng
+                    },
+                    mapTypeControl: false,
+                    zoom: 14
+                });
+
+                this.map = map;
+            }
+
+            static get is() {
+                return 'g-map';
+            }
+
+            static get properties() {
+                return {
+                    map: {
+                        type: Object
+                    },
+                    markers: {
+                        type: Array,
+                        value: new Array()
+                    }
+                }
+            }
+        }
+
+        window.customElements.define('g-map', GMap);
+    </script>
+</dom-module>

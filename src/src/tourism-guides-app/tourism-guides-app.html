@@ -1,0 +1,53 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="/src/tourism-guides-app/g-map.html">
+<link rel="import" href="/src/tourism-guides-app/aside-element.html">
+<link rel="import" href="/src/tourism-guides-app/light-box.html">
+<link rel="import" href="/src/tourism-guides-app/photo-swipe.html">
+
+<dom-module id="tourism-guides-app">
+    <template>
+        <style>
+            .aside-element {
+                z-index: 1;
+                background-color: white;
+            }
+
+            .gmap {
+                z-index: 0;
+            }
+        </style>
+        <aside-element id="aside" class="aside-element" on-image-selected="onImageSelected" on-add-marker="onAddMarker" on-map-pan-to="onMapPanTo"
+            on-clean-map="onCleanMap"></aside-element>
+        <g-map id="gmap" class="gmap"></g-map>
+        <photo-swipe id="photoSwipe">
+        </photo-swipe>
+    </template>
+
+    <script>
+        class TourismGuidesApp extends Polymer.Element {
+
+            onImageSelected(parameters) {
+                this.$.photoSwipe.openPhotoSwipe(parameters.detail.images, parameters.detail.index);
+            }
+
+            onMapPanTo(event) {
+                this.$.gmap.markerPanTo(event.detail);
+            }
+
+            onAddMarker(event) {
+                this.$.gmap.addMarkers(event.detail);
+            }
+
+            onCleanMap() {
+                this.$.gmap.cleanMap();
+            }
+
+            static get is() {
+                return 'tourism-guides-app';
+            }
+        }
+
+        window.customElements.define(TourismGuidesApp.is, TourismGuidesApp);
+    </script>
+</dom-module>

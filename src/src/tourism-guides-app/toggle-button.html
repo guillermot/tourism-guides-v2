@@ -1,0 +1,102 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="toggle-button">
+    <template>
+        <style>
+            .toggle-button {
+                background-color: beige;
+                z-index: 1;
+                width: 30px;
+                height: 40px;
+                position: absolute;
+                top:60px;
+                left: inherit;
+                cursor: pointer;
+            }
+            .toggle-button.toggle-out { left: 0px !important;}
+            
+            @keyframes slideOutLeftLong {
+                from {
+                    transform: translate3d(0, 0, 0);
+                }
+
+                to {
+                    transform: translate3d(-400px, 0, 0);
+                }
+            }
+
+            .slideOutLeftLong {
+                animation-name: slideOutLeftLong;
+            }
+
+            @keyframes slideInLeftLong {
+                from {
+                    transform: translate3d(0, 0, 0);
+                    visibility: visible;
+                }
+
+                to {
+                    transform: translate3d(400px, 0, 0);
+                }
+            }
+
+            .slideInLeftLong {
+                animation-name: slideInLeftLong;
+            }
+        </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <div id="button" class="toggle-button" on-click="onToggleClick">
+            <<
+        </div>
+    </template>
+    <script>
+        class ToggleButtonElement extends Polymer.Element {
+
+            onToggleClick() {
+                var status = this.$.button.classList.contains('toggle-out') ? 'closed' : 'opened';
+                this.dispatchEvent(new CustomEvent('toggle-click', {
+                    detail: status
+                }));
+            }
+
+            transitionIn() {
+                this.$.button.classList += ' animated ' + this.toggleButtonInTransitionLongClass;
+            }
+
+            transitionOut() {
+                this.$.button.classList += ' animated ' + this.toggleButtonOutTransitionLongClass;
+            }
+
+            transitionInEnd() {
+                this.$.button.classList.remove('animated');
+                this.$.button.classList.remove('toggle-out');
+                this.$.button.classList.remove(this.toggleButtonInTransitionLongClass);
+            }
+
+            transitionOutEnd() {
+                this.$.button.classList.remove('animated');
+                this.$.button.classList.add('toggle-out');
+                this.$.button.classList.remove(this.toggleButtonOutTransitionLongClass);
+            }
+
+            static get is() {
+                return 'toggle-button';
+            }
+
+            static get properties() {
+                return {
+                    toggleButtonOutTransitionLongClass: {
+                        type: String,
+                        value: 'slideOutLeftLong'
+                    },
+                    toggleButtonInTransitionLongClass: {
+                        type: String,
+                        value: 'slideInLeftLong'
+                    }
+                };
+            }
+        }
+
+        window.customElements.define(ToggleButtonElement.is, ToggleButtonElement);
+    </script>
+</dom-module>

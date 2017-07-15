@@ -1,0 +1,234 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="/src/tourism-guides-app/guide-list.html">
+<link rel="import" href="/src/tourism-guides-app/place-list.html">
+<link rel="import" href="/src/tourism-guides-app/place-card.html">
+<link rel="import" href="/src/tourism-guides-app/place-data.html">
+<link rel="import" href="/src/tourism-guides-app/guide-data.html">
+<link rel="import" href="/src/tourism-guides-app/bad-url.html">
+<link rel="import" href="/src/tourism-guides-app/toggle-button.html">
+
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+
+<dom-module id="aside-element">
+    <template>
+        <style>
+            .container {
+                position: fixed;
+                z-index: 2; 
+                background-color:white; 
+                left: 0px;
+                top: 0px;
+                width: 400px;
+                height: 100%;
+            }
+            
+            .content {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 400px;
+                height: 100%;
+                background-color: white;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                -webkit-animation-duration: 5s;
+                animation-duration: 5s;
+                /*z-index: 3;*/
+            }
+
+            .container.toggle-out { left: -400px;}
+            .content.toggle-out { left: -400px ;}
+            .toggle-button{ left: 400px;}
+
+            .scrollbar::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                background-color: #F5F5F5;
+            }
+
+            .scrollbar::-webkit-scrollbar {
+                width: 3px;
+                background-color: #F5F5F5;
+            }
+
+            .scrollbar::-webkit-scrollbar-thumb {
+                background-color: #000000;
+                border: 2px solid #bfbfbf;
+            }
+
+            .routing {
+                background-color: red;
+                display: block;
+                text-align: right;
+            }
+        </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <app-location route="{{route}}"></app-location>
+        <app-route route="{{route}}" pattern="/:page" data="{{data}}" tail="{{subroute}}">
+        </app-route>    
+
+        <app-route route="{{subroute}}" pattern="/:id" data="{{subrouteData}}">
+        </app-route>
+
+        <guide-data guides="{{guides}}">
+        </guide-data>
+
+        <place-data guides="{{guides}}" place-code="{{subrouteData.id}}" selected-guide="{{selectedGuide}}">
+        </place-data>
+        <div id="asider" class="container">
+            <iron-pages id="iron" selected="[[data.page]]" on-iron-select="onIronActivate" class="content scrollbar" attr-for-selected="path" fallback-selection="bar-url">
+                <guide-list id="guideList" path="" on-guide-click="onGuideClick" guides="{{guides}}"></guide-list>
+                <place-list id="placeList" path="places" on-place-click="onPlaceClick" on-back-button-click="onPlaceListBackClick" selected-guide="{{selectedGuide}}"></place-list>
+                <place-card id="placeCard" path="place" on-image-selected="onImageSelected" selected-place="{{selectedPlace}}"></place-card>
+                <bar-url id="bar-url" path="bar-url"></bar-url>
+            </iron-pages>
+        </div>
+        <!--<toggle-button id="toggleButton" class="toggle-button" on-toggle-click="onToggleClick">
+        </toggle-button>-->
+
+    </template>
+    <script>
+        class AsideElement extends Polymer.Element {
+
+            ready() {
+                super.ready();
+                this.setIronAnimationEndHandler();
+                this.setIronContainerAnimationEndHandler();
+            }
+
+            onPlaceClick(event) {
+                const placeClicked = event.detail;
+
+                this.dispatchEvent(new CustomEvent('map-pan-to', {
+                    detail: {
+                        lat: placeClicked.lat,
+                        lng: placeClicked.lng
+                    }
+                }));
+
+                this.selectedPlace = placeClicked;
+            }
+
+            onGuideClick(event) {
+                const selectedGuide = event.detail;
+
+                const markers = selectedGuide.places.forEach(function(place) {
+                    if (place.lat)
+                        this.dispatchEvent(new CustomEvent('add-marker', {
+                            detail: {
+                                lat: place.lat,
+                                lng: place.lng
+                            }
+                        }));
+                }, this);
+
+                this.selectedGuide = selectedGuide;
+            }
+
+            onImageSelected(parameters) {
+                this.dispatchEvent(new CustomEvent('image-selected', {
+                    detail: parameters.detail
+                }));
+            }
+
+            onPlaceListBackClick() {
+                this.dispatchEvent(new CustomEvent("clean-map"));
+            }
+
+            setIronAnimationEndHandler() {
+                const self = this;
+                this.$.iron.addEventListener('animationend', function(event) {
+                    switch (event.animationName) {
+                        case self.sectionTransitionClass:
+                            self.$.iron.classList.remove('animated');
+                            self.$.iron.classList.remove(self.sectionTransitionClass);
+                            break;
+                    }
+                }, false);
+            }
+
+            setIronContainerAnimationEndHandler() {
+                const self = this;
+                this.$.asider.addEventListener('animationend', function(event) {
+                    switch (event.animationName) {
+                        case self.toggleButtonOutTransitionClass:
+                            self.$.toggleButton.transitionOutEnd();
+                            self.transitionOutEnd();
+                            break;
+                        case self.toggleButtonInTransitionClass:
+                            self.$.toggleButton.transitionInEnd();
+                            self.transitionInEnd();
+                            break;
+                    }
+                }, false);
+            }
+
+            onToggleClick(event) {
+                if (event.detail == 'opened') {
+                    this.$.toggleButton.transitionOut();
+                    this.transitionOut();
+                } else {
+                    this.$.toggleButton.transitionIn();
+                    this.transitionIn();
+                }
+            }
+
+            transitionIn() {
+                this.$.iron.classList.remove('toggle-out');
+                this.$.asider.classList.remove('toggle-out');
+                this.$.asider.classList += ' animated ' + this.toggleButtonInTransitionClass;
+            }
+            transitionOut() {
+                this.$.asider.classList += ' animated ' + this.toggleButtonOutTransitionClass;
+            }
+            transitionInEnd() {
+                this.$.asider.classList.remove('animated');
+                this.$.iron.classList.remove('animated');
+                this.$.iron.classList.remove(this.toggleButtonInTransitionClass);
+                this.$.asider.classList.remove(this.toggleButtonInTransitionClass);
+            }
+            transitionOutEnd() {
+                this.$.asider.classList.remove('animated');
+                this.$.asider.classList.remove(this.toggleButtonOutTransitionClass);
+
+                this.$.iron.classList.add('toggle-out');
+                this.$.asider.classList.add('toggle-out');
+            }
+
+            onIronActivate(event) {
+                this.playSectionTransition();
+            }
+
+            playSectionTransition() {
+                const classes = ' animated ' + this.sectionTransitionClass;
+                this.$.iron.classList += classes;
+            }
+
+            static get is() {
+                return 'aside-element';
+            }
+
+            static get properties() {
+                return {
+                    selectedGuide: {},
+                    selectedPlace: {},
+                    sectionTransitionClass: {
+                        type: String,
+                        value: 'fadeIn'
+                    },
+                    toggleButtonOutTransitionClass: {
+                        type: String,
+                        value: 'slideOutLeft'
+                    },
+                    toggleButtonInTransitionClass: {
+                        type: String,
+                        value: 'slideInLeft'
+                    }
+                }
+            }
+        }
+
+        window.customElements.define(AsideElement.is, AsideElement);
+    </script>
+</dom-module>

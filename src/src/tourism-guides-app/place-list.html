@@ -1,0 +1,116 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="place-list">
+    <template>
+        <style>
+            .box {
+                margin-left: 5px;
+                margin-right: 5px;
+                margin-bottom: 5px !important;
+                cursor: pointer;
+            }
+
+            .gm-header {
+                padding-bottom: 20px !important;
+                padding-top: 20px !important;
+            }
+
+            .hero-body .title {
+                padding-left: 25px;
+            }
+
+            .hero-body div {
+                padding-left: 25px;
+                margin-top: -20px;
+            }
+
+            .back-button {
+                float: right;
+                margin-right: 20px;
+                margin-top: 8px;
+                cursor: pointer;
+            }
+        </style>
+
+        <link rel="stylesheet" href="../../bower_components/bulma/css/bulma.css">
+        <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.css">
+        <section id="section" class="hero is-warning">
+            <div class="hero-body gm-header">
+                <h1 class="title">
+                    {{selectedGuide.name}} <a href="/" on-click="onBackButtonClick"><span class="tag is-info back-button">Back</span></a>
+                </h1>
+                <div>
+                    {{selectedGuide.description}}
+                </div>
+            </div>
+        </section>
+
+        <template is="dom-repeat" items="[[selectedGuide.places]]">
+            <a href="/place/{{item.id}}?from={{selectedGuide.code}}">
+                <div class="box" on-click="onPlaceClick">
+                    <article class="media">
+                        <div class="media-left">
+                            <figure class="image is-64x64">
+                                <img src="{{item.img}}" alt="Image">
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <div class="content">
+                                <p>
+                                    <strong>[[item.name]]</strong> <small>@johnsmith</small> <small>31m</small>
+                                    <br> [[item.description]]
+                                </p>
+                            </div>
+                            <nav class="level is-mobile">
+                                <div class="level-left">
+                                    <a class="level-item">
+                                    <span class="icon is-small"><i class="fa fa-reply"></i></span>
+                                </a>
+                                    <a class="level-item">
+                                    <span class="icon is-small"><i class="fa fa-retweet"></i></span>
+                                </a>
+                                    <a class="level-item">
+                                    <span class="icon is-small"><i class="fa fa-heart"></i></span>
+                                </a>
+                                </div>
+                            </nav>
+                        </div>
+                    </article>
+                </div>
+            </a>
+        </template>
+    </template>
+    <script>
+        class PlaceList extends Polymer.Element {
+
+            onPlaceClick(event) {
+                const placeClicked = event.model.item;
+                
+                this.dispatchEvent(new CustomEvent('place-click', {
+                    detail: event.model.item
+                }));
+            }
+
+            onBackButtonClick() {
+                this.dispatchEvent(new CustomEvent('back-button-click'));
+            }
+
+            ready() {
+                super.ready();
+                this.markers = [];
+            }
+
+            static get is() {
+                return 'place-list';
+            }
+
+            static get properties() {
+                return {
+                    selectedGuide: {}
+                }
+            }
+        }
+
+        window.customElements.define(PlaceList.is, PlaceList);
+    </script>
+</dom-module>

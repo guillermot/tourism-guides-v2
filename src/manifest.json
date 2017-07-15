@@ -1,0 +1,6 @@
+{
+  "name": "tourism-guides",
+  "short_name": "tourism-guides",
+  "start_url": "/",
+  "display": "standalone"
+}

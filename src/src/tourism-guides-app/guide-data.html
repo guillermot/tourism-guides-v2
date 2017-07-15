@@ -1,0 +1,235 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="guide-data">
+    <script>
+        var guidesArr = [{
+            name: 'First visit guide!',
+            code: 'first-visit',
+            description: 'All places you need to go in your first visit to New York.',
+            img: '/src/assets/img/manhattan/rockefeller-center.jpg',
+            places: [{
+                id: 1,
+                source: {
+                    displayName: 'Wikipedia',
+                    url: 'https://en.wikipedia.org/wiki/Rockefeller_Center'
+                },
+                type: 'place',
+                name: 'Rockerfeller Center',
+                description: 'Iconic Midtown business complex',
+                img: '/src/assets/img/manhattan/rockefeller-center.jpg',
+                lat: 40.758891,
+                lng: -73.978693,
+                address: '45 Rockefeller Plaza, New York, NY 10111, USA',
+                longDescription: 'Rockefeller Center is a large complex consisting of 19 high-rise commercial buildings covering 22 acres (89,000 m2) between 48th and 51st Streets in New York City. Commissioned by the Rockefeller family, it is located in the center of Midtown Manhattan, spanning the area between Fifth Avenue and Sixth Avenue. It was declared a National Historic Landmark in 1987. It is famous for its annual Christmas tree lighting.<h2>30 Rockefeller Plaza</h2>30 Rockefeller Plaza is an American Art Deco skyscraper that forms the centerpiece of Rockefeller Center in Midtown Manhattan, New York City. The building is most famous for housing the NBC television network headquarters. At 850 feet (260 m) high, the 70-story building is the 14th tallest in New York City and the 39th tallest in the United States. It stands 400 feet (122 m) shorter than the Empire State Building. <h2>Observation deck</h2> he observation deck atop the skyscraper, dubbed \"Top of the Rock\", reopened to the public on November 1, 2005, after undergoing a $75 million renovation. It had been closed since 1986 to accommodate the renovation of the Rainbow Room. The deck, which is built to resemble the deck of an ocean liner, offers sightseers a bird\'s eye view of the city, competing with the 86th floor observatory of the Empire State Building 200 feet (61 m) higher. It is often considered the best panoramic city view,[20] if only because it offers a view of the aforementioned Empire State Building, which cannot be seen from its own observation deck.[21] The timed entry system and larger observation deck also results in shorter waiting times compared to the Empire State.<h2>Radio City Music Hall</h2>Radio City Music Hall, at 50th Street and Sixth Avenue, was completed in December 1932. At the time, it was promoted as the largest and most opulent theater in the world. Its original intended name was the \"International Music Hall\"[27] but this was changed to reflect the name of its neighbor, \"Radio City,\" as the new NBC Studios in the RCA Building were known. RCA was one of the complex\'s first and most important tenants and the entire Center itself was sometimes referred to as \"Radio City.\"<h2>Top of the Rock</h2>The observation deck atop the skyscraper, dubbed \"Top of the Rock\", reopened to the public on November 1, 2005, after undergoing a $75 million renovation. It had been closed since 1986 to accommodate the renovation of the Rainbow Room. The deck, which is built to resemble the deck of an ocean liner, offers sightseers a bird\'s eye view of the city, competing with the 86th floor observatory of the Empire State Building 200 feet (61 m) higher. It is often considered the best panoramic city view, if only because it offers a view of the aforementioned Empire State Building, which cannot be seen from its own observation deck. The timed entry system and larger observation deck also results in shorter waiting times compared to the Empire State.',
+                images: [{
+                    url: '/src/assets/img/first-visit/top-of-the-rock.jpg',
+                    width: 594,
+                    height: 360,
+                    description: 'The observation deck atop the skyscraper, dubbed "Top of the Rock"'
+                }, {
+                    url: '/src/assets/img/first-visit/rockefeller-center-christmas-tree.jpg',
+                    width: 648,
+                    height: 350,
+                    description: 'The Rockefeller Center Christmas Tree is a large Christmas tree placed annually in Rockefeller Center'
+                }]
+            }, {
+                id: 3,
+                type: 'area',
+                name: 'Chinatown',
+                description: 'Iconic Midtown business complex',
+                longDescription: 'Iconic Midtown business complex',
+                img: '/src/assets/img/manhattan/chinatown.jpg',
+                images: [{
+                    url: '/src/assets/img/first-visit/top-of-the-rock.jpg',
+                    width: 594,
+                    height: 360,
+                    description: 'The observation deck atop the skyscraper, dubbed "Top of the Rock"'
+                }, {
+                    url: '/src/assets/img/first-visit/rockefeller-center-christmas-tree.jpg',
+                    width: 648,
+                    height: 350,
+                    description: 'The Rockefeller Center Christmas Tree is a large Christmas tree placed annually in Rockefeller Center'
+                }]
+            }, {
+                id: 4,
+                type: 'place',
+                name: 'Grand Central Terminal',
+                description: 'Iconic Midtown business complex',
+                longDescription: 'Iconic Midtown business complex',
+                img: '/src/assets/img/manhattan/gran-central-terminal.jpg',
+                lat: 40.752954,
+                lng: -73.977208
+            }, {
+                id: 5,
+                type: 'place',
+                name: 'Brooklyn Bridge',
+                description: 'Iconic Midtown business complex',
+                longDescription: 'Iconic Midtown business complex',
+                img: '/src/assets/img/manhattan/brookyn-bridge.jpg',
+                lat: 40.706574,
+                lng: -73.996810
+            }, {
+                id: 6,
+                type: 'place',
+                name: 'Statue of Liberty',
+                description: 'Iconic Midtown business complex',
+                longDescription: 'Iconic Midtown business complex',
+                img: '/src/assets/img/manhattan/statue-of-liberty.jpg',
+                lat: 40.689225,
+                lng: -74.044533
+            }, {
+                id: 7,
+                type: 'area',
+                name: 'High Line',
+                description: 'Iconic Midtown business complex',
+                longDescription: 'Iconic Midtown business complex',
+                img: '/src/assets/img/manhattan/high-line.jpg'
+            }]
+        }, {
+            name: 'Best of Central Park',
+            code: 'central-park',
+            description: 'This park is full of litles treasures to discover, each one of them will blow your mind.',
+            img: '/src/assets/img/manhattan/high-line.jpg',
+            places: [{
+                id: 8,
+                type: 'place',
+                name: 'Belvedere Castle',
+                description: 'Iconic Midtown business complex',
+                img: '/src/assets/img/manhattan/high-line.jpg',
+                lat: 40.779467,
+                lng: -73.968817
+            }, {
+                id: 9,
+                type: 'place',
+                title: 'Strawberry Fields Memorial',
+                description: 'Iconic Midtown business complex',
+                img: '/src/assets/img/manhattan/high-line.jpg',
+                lat: 40.775738,
+                lng: -73.975186
+            }, {
+                id: 10,
+                type: 'place',
+                name: 'Bethesda Terrace and Fountain',
+                description: 'Iconic Midtown business complex',
+                img: '/src/assets/img/manhattan/high-line.jpg',
+                lat: 40.773779,
+                lng: -73.970518
+            }, {
+                id: 11,
+                type: 'place',
+                name: 'Gapstow Bridge',
+                description: 'Iconic Midtown business complex',
+                img: '/src/assets/img/manhattan/high-line.jpg',
+                lat: 40.766911,
+                lng: -73.973668
+            }, {
+                id: 12,
+                type: 'place',
+                name: 'Central Park Zoo',
+                description: 'Iconic Midtown business complex',
+                img: '/src/assets/img/manhattan/high-line.jpg',
+                lat: 40.768004,
+                lng: -73.971848
+            }]
+        }, {
+            name: 'Places on Downtown',
+            description: 'One of the most important financial',
+            code: 'downtown',
+            img: '/src/assets/img/manhattan/high-line.jpg',
+            places: [{
+                id: 13,
+                type: 'place',
+                name: 'World Trade Center',
+                description: 'Iconic Midtown business complex',
+                img: '/src/assets/img/manhattan/high-line.jpg',
+                lat: 40.711802,
+                lng: -73.013118
+            }, {
+                id: 14,
+                type: 'place',
+                name: 'Charging Bull',
+                description: 'Iconic Midtown business complex',
+                img: '/src/assets/img/manhattan/high-line.jpg',
+                lat: 40.705552,
+                lng: -73.013446
+            }, {
+                id: 5,
+                type: 'place',
+                name: 'Brooklyn Bridge',
+                description: 'Iconic Midtown business complex',
+                img: '/src/assets/img/manhattan/brookyn-bridge.jpg',
+                lat: 40.706574,
+                lng: -73.996810
+            }]
+        }, {
+            name: 'Manhattan Neighborhoods',
+            code: 'neighborhoods',
+            description: 'Most important neighborhoods of Manhattan. All the right places you should visit',
+            img: '/src/assets/img/manhattan/high-line.jpg',
+            places: [{
+                id: 15,
+                type: 'place',
+                name: 'Upper West Side',
+                description: 'Iconic Midtown business complex',
+                img: '/src/assets/img/manhattan/high-line.jpg',
+                lat: 40.787159,
+                lng: -73.975835
+            }, {
+                id: 16,
+                type: 'place',
+                name: 'Greenwich Village',
+                description: 'Iconic Midtown business complex',
+                img: '/src/assets/img/manhattan/high-line.jpg',
+                lat: 40.733323,
+                lng: -73.003037
+            }, {
+                id: 17,
+                type: 'place',
+                name: 'Upper East Side',
+                description: 'Iconic Midtown business complex',
+                img: '/src/assets/img/manhattan/high-line.jpg',
+                lat: 40.773680,
+                lng: -73.957356
+            }, {
+                id: 18,
+                type: 'place',
+                name: 'Midtown',
+                description: 'Iconic Midtown business complex',
+                img: '/src/assets/img/manhattan/high-line.jpg',
+                lat: 40.754514,
+                lng: -73.985984
+            }, {
+                id: 19,
+                type: 'place',
+                name: 'Downtown',
+                description: 'Iconic Midtown business complex',
+                img: '/src/assets/img/manhattan/high-line.jpg',
+                lat: 40.722913,
+                lng: -74.000018
+            },]
+        }];
+
+        class GuideData extends Polymer.Element {
+
+            _getGuides() {
+                return guidesArr;
+            }
+
+            static get properties() {
+                return {
+                    guides: {
+                        type: Array,
+                        value: guidesArr,
+                        readOnly: true,
+                        notify: true
+                    }
+                }
+            }
+            static get is() {
+                return 'guide-data';
+            }
+        }
+
+        window.customElements.define(GuideData.is, GuideData);
+    </script>
+</dom-module>

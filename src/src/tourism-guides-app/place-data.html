@@ -1,0 +1,33 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="place-data">
+    <script>
+        
+        class PlaceData extends Polymer.Element {
+
+            _getGuide(guideCode) {
+                return this.guides.find(guide => guide.code == guideCode);
+            }
+
+            static get properties() {
+                return {
+                    guides: {
+                        type: Array
+                    },
+                    selectedGuide: {
+                        computed: '_getGuide(placeCode)',
+                        readOnly: true,
+                        notify: true
+                    },
+                    placeCode: {}
+                };
+            }
+
+            static get is() {
+                return 'place-data';
+            }
+        }
+
+        window.customElements.define(PlaceData.is, PlaceData);
+    </script>
+</dom-module>
