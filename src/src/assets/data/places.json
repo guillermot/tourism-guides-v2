@@ -2,6 +2,7 @@
     "places": {
         "rockerfeller-center": {
             "id": 1,
+            "code": "rockerfeller-center",
             "source": {
                 "displayName": "Wikipedia",
                 "url": "https://en.wikipedia.org/wiki/Rockefeller_Center"
@@ -31,6 +32,7 @@
         },
         "chinatown": {
             "id": 3,
+            "code": "chinatown",
             "type": "area",
             "name": "Chinatown",
             "description": "Iconic Midtown business complex",
@@ -53,6 +55,7 @@
         },
         "grand-central-terminal": {
             "id": 4,
+            "code": "grand-central-terminal",
             "type": "place",
             "name": "Grand Central Terminal",
             "description": "Iconic Midtown business complex",
@@ -63,6 +66,7 @@
         },
         "brooklyn-bridge": {
             "id": 5,
+            "code": "brooklyn-bridge",
             "type": "place",
             "name": "Brooklyn Bridge",
             "description": "Iconic Midtown business complex",
@@ -73,6 +77,7 @@
         },
         "statue-liberty": {
             "id": 6,
+            "code": "statue-liberty",
             "type": "place",
             "name": "Statue of Liberty",
             "description": "Iconic Midtown business complex",
@@ -83,6 +88,7 @@
         },
         "high-line": {
             "id": 7,
+            "code":"high-line",
             "type": "area",
             "name": "High Line",
             "description": "Iconic Midtown business complex",
@@ -91,6 +97,7 @@
         },
         "belvedere-castle": {
             "id": 8,
+            "code": "belvedere-castle",
             "type": "place",
             "name": "Belvedere Castle",
             "description": "Iconic Midtown business complex",
@@ -100,6 +107,7 @@
         },
         "strawberry-fields-memorial": {
             "id": 9,
+            "code": "strawberry-fields-memorial",
             "type": "place",
             "title": "Strawberry Fields Memorial",
             "description": "Iconic Midtown business complex",
@@ -109,6 +117,7 @@
         },
         "bethesda-terrace-and-fountain": {
             "id": 10,
+            "code": "bethesda-terrace-and-fountain",
             "type": "place",
             "name": "Bethesda Terrace and Fountain",
             "description": "Iconic Midtown business complex",
@@ -118,6 +127,7 @@
         },
         "gapstow-bridge": {
             "id": 11,
+            "code": "gapstow-bridge",
             "type": "place",
             "name": "Gapstow Bridge",
             "description": "Iconic Midtown business complex",
@@ -127,6 +137,7 @@
         },
         "central-park-zoo": {
             "id": 12,
+            "code": "central-park-zoo",
             "type": "place",
             "name": "Central Park Zoo",
             "description": "Iconic Midtown business complex",
@@ -136,6 +147,7 @@
         },
         "world-trade-center": {
             "id": 13,
+            "code": "world-trade-center",
             "type": "place",
             "name": "World Trade Center",
             "description": "Iconic Midtown business complex",
@@ -145,6 +157,7 @@
         },
         "charging-bull": {
             "id": 14,
+            "code": "charging-bull",
             "type": "place",
             "name": "Charging Bull",
             "description": "Iconic Midtown business complex",
@@ -152,55 +165,55 @@
             "lat": 40.705552,
             "lng": -73.013446
         },
-        "upper-west-side":
-        {
-                    "id": 15,
-                    "type": "place",
-                    "name": "Upper West Side",
-                    "description": "Iconic Midtown business complex",
-                    "img": "/src/assets/img/manhattan/high-line.jpg",
-                    "lat": 40.787159,
-                    "lng": -73.975835
-                },
-                "greenwich-village":
-                {
-                    "id": 16,
-                    "type": "place",
-                    "name": "Greenwich Village",
-                    "description": "Iconic Midtown business complex",
-                    "img": "/src/assets/img/manhattan/high-line.jpg",
-                    "lat": 40.733323,
-                    "lng": -73.003037
-                },
-                "upper-east-side":
-                {
-                    "id": 17,
-                    "type": "place",
-                    "name": "Upper East Side",
-                    "description": "Iconic Midtown business complex",
-                    "img": "/src/assets/img/manhattan/high-line.jpg",
-                    "lat": 40.773680,
-                    "lng": -73.957356
-                },
-                "midtown":
-                {
-                    "id": 18,
-                    "type": "place",
-                    "name": "Midtown",
-                    "description": "Iconic Midtown business complex",
-                    "img": "/src/assets/img/manhattan/high-line.jpg",
-                    "lat": 40.754514,
-                    "lng": -73.985984
-                },
-                "downtown":
-                {
-                    "id": 19,
-                    "type": "place",
-                    "name": "Downtown",
-                    "description": "Iconic Midtown business complex",
-                    "img": "/src/assets/img/manhattan/high-line.jpg",
-                    "lat": 40.722913,
-                    "lng": -74.000018
-                }
+        "upper-west-side": {
+            "id": 15,
+            "code": "upper-west-side",
+            "type": "place",
+            "name": "Upper West Side",
+            "description": "Iconic Midtown business complex",
+            "img": "/src/assets/img/manhattan/high-line.jpg",
+            "lat": 40.787159,
+            "lng": -73.975835
+        },
+        "greenwich-village": {
+            "id": 16,
+            "code": "greenwich-village",
+            "type": "place",
+            "name": "Greenwich Village",
+            "description": "Iconic Midtown business complex",
+            "img": "/src/assets/img/manhattan/high-line.jpg",
+            "lat": 40.733323,
+            "lng": -73.003037
+        },
+        "upper-east-side": {
+            "id": 17,
+            "code": "upper-east-side",
+            "type": "place",
+            "name": "Upper East Side",
+            "description": "Iconic Midtown business complex",
+            "img": "/src/assets/img/manhattan/high-line.jpg",
+            "lat": 40.773680,
+            "lng": -73.957356
+        },
+        "midtown": {
+            "id": 18,
+            "code": "midtown",
+            "type": "place",
+            "name": "Midtown",
+            "description": "Iconic Midtown business complex",
+            "img": "/src/assets/img/manhattan/high-line.jpg",
+            "lat": 40.754514,
+            "lng": -73.985984
+        },
+        "downtown": {
+            "id": 19,
+            "code": "downtown",
+            "type": "place",
+            "name": "Downtown",
+            "description": "Iconic Midtown business complex",
+            "img": "/src/assets/img/manhattan/high-line.jpg",
+            "lat": 40.722913,
+            "lng": -74.000018
+        }
     }
 }
